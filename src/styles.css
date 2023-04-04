@@ -112,10 +112,43 @@ body {
 .weather-temperature .active:hover {
   text-decoration: none;
 }
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #000;
+}
+.weather-app h2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 500;
+  margin: 20px 0 10px 0;
+  line-height: 24px;
+  font-size: 28px;
+  line-height: 43px;
+  color: #272142;
+}
 
-img {
-  max-width: 70%;
-  margin: 0 auto;
+.weather-forecast-date {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+
+.weather-forecast-week {
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 16px;
+  text-align: center;
+  padding: 5px;
+  height: fit-content;
+  width: fit-content;
+  margin: 5px 5px;
+}
+.weather-forecast-low {
+  color: rgb(87, 87, 148);
 }
 a {
   color: #3cc9f8;

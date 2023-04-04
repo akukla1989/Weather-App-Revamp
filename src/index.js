@@ -51,6 +51,64 @@ function formatTime(time) {
 }
 setInterval(formatTime(currentTime), 1000);
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let forecastDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return forecastDays[day];
+}
+function displayForecast(response) {
+  console.log(response.data.daily);
+
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+    
+      <div class="col-2 weather-forecast-week">
+         <div class="weather-forecast-date">
+          ${formatDay(forecastDay.time)}
+         
+        </div>
+        
+        <img
+          src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+            forecastDay.condition.icon
+          }.png"
+          alt="weather icon"
+          width="75"
+        />
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-high"> H: ${Math.round(
+            forecastDay.temperature.maximum
+          )}°</span>
+          <br />
+          <span class="weather-forecast-low"> L: ${Math.round(
+            forecastDay.temperature.minimum
+          )}°</span>
+        </div>
+      </div>
+    `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let longitude = coordinates.longitude;
+  let latitude = coordinates.latitude;
+  let apiKey = "d1f1534c3087543348aa47o4b68t0360";
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 function displayTemperature(response) {
   console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
@@ -59,8 +117,6 @@ function displayTemperature(response) {
   let humidityElement = document.querySelector("#humidity");
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#icon");
-
-  celsiusTemperature = response.data.temperature.current;
 
   celsiusTemperature = response.data.temperature.current;
 
@@ -74,6 +130,8 @@ function displayTemperature(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
