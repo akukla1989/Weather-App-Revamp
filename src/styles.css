@@ -139,13 +139,11 @@ body {
 
 .weather-forecast-week {
   background-color: #fff;
-  border: 2px solid #000;
-  border-radius: 16px;
   text-align: center;
   padding: 5px;
   height: fit-content;
   width: fit-content;
-  margin: 5px 5px;
+  margin: 0px auto;
 }
 .weather-forecast-low {
   color: rgb(87, 87, 148);
