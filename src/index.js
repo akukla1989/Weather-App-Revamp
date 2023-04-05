@@ -52,8 +52,8 @@ function formatTime(time) {
 setInterval(formatTime(currentTime), 1000);
 
 function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
+  let today = new Date(timestamp * 1000);
+  let day = today.getDay();
   let forecastDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return forecastDays[day];
 }
