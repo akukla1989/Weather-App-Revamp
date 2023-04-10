@@ -40,7 +40,7 @@ setInterval(formatDate(currentTime), 1000);
 function formatTime(time) {
   let hour = time.getHours();
   if (hour < 10) {
-    hour = `0${hours}`;
+    hour = `0${hour}`;
   }
   let minutes = time.getMinutes();
   if (minutes < 10) {
